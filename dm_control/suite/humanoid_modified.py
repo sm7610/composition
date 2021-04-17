@@ -131,6 +131,7 @@ class Physics(mujoco.Physics):
 
 class Humanoid(base.Task):
   """A humanoid task."""
+  _HEAD_HEIGHT_THR = 1.35
 
   def __init__(self, move_speed, pure_state, random=None):
     """Initializes an instance of `Humanoid`.
@@ -159,7 +160,6 @@ class Humanoid(base.Task):
     # Find a collision-free random initial configuration.
     penetrating = True
     while penetrating:
-      randomizers.randomize_limited_and_rotational_joints(physics, self.random)
       # Check for collisions.
       physics.after_reset()
       penetrating = physics.data.ncon > 0
@@ -205,3 +205,8 @@ class Humanoid(base.Task):
                                sigmoid='linear')
       move = (5*move + 1) / 6
       return small_control * stand_reward * move
+
+    def get_termination(self, physics):
+    """Terminates when the head height is smaller than a threshold."""
+    if physics.head_height() < self._HEAD_HEIGHT_THR:
+      return 0.0
