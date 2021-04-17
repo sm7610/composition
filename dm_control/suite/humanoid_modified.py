@@ -206,7 +206,7 @@ class Humanoid(base.Task):
       move = (5*move + 1) / 6
       return small_control * stand_reward * move
 
-    def get_termination(self, physics):
+  def get_termination(self, physics):
     """Terminates when the head height is smaller than a threshold."""
     if physics.head_height() < self._HEAD_HEIGHT_THR:
       return 0.0
