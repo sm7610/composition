@@ -1,0 +1,21 @@
+# go/google3metadata
+# proto-file: devtools/metadata/metadata.proto
+# proto-message: MetaData
+name: "policy-composition"
+description:
+  "Research Project on learning Policy Composition. "
+  "This is not intended to be a buildable library."
+  "It includes an algorithm published by external sources."
+
+third_party {
+  url {
+    type: GIT
+    value: "https://github.com/sm7610/rl-policy-composition"
+  }
+  version: "f56de160490abbe60d468005ef1614a2ea8bd1ec"
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 16
+  }
+}
