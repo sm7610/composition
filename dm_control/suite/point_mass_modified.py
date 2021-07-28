@@ -147,7 +147,7 @@ class PointMass(base.Task):
     obs['velocity'] = physics.velocity()
     return obs
 
-  def get_reward(self, physics, move_dir):
+  def get_reward(self, physics):
     """Returns a reward to the agent."""
     target_size = physics.named.model.geom_size['target', 0]
     near_target = rewards.tolerance(physics.mass_to_target_dist(),
